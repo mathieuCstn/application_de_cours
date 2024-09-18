@@ -1,4 +1,7 @@
-FROM php:8.1-apache
+FROM php:8.3.11-apache
+
+ENV APP_ENV=prod
+ENV APP_DEBUG=0
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -7,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     libonig-dev \
-    && docker-php-ext-install intl mbstring pdo pdo_mysql zip opcache
+    && docker-php-ext-install intl mbstring pdo pdo_pgsql zip opcache
 
 RUN a2enmod rewrite
 
